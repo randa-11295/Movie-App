@@ -13,3 +13,14 @@ export interface MovieCardType {
   poster: string;
   id: string;
 }
+export interface FetchMoviesParamsType {
+  search: string;
+  page: number;
+}
+
+export interface  FetchMoviesResponse  {
+  Search?: MovieType[];
+  totalResults?: string;
+  Response: "True" | "False";
+  Error?: string;
+}
