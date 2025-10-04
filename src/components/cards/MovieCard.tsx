@@ -1,5 +1,6 @@
 import React from "react";
 import { MovieCardType } from "../../types/moviesTypes";
+import { useNavigate } from "react-router-dom";
 
 const MovieCard: React.FC<MovieCardType> = ({
   title,
@@ -7,8 +8,12 @@ const MovieCard: React.FC<MovieCardType> = ({
   type,
   poster,
   id,
-  onDetailsClick,
 }) => {
+    const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/movies/${id}`);
+  };
   return (
     <div className=" bg-gray-800 rounded-2xl shadow-md overflow-hidden transition-transform hover:scale-105 hover:shadow-xl ">
       <img
@@ -28,7 +33,7 @@ const MovieCard: React.FC<MovieCardType> = ({
 
         {/* 🔘 Details Button */}
         <button
-          onClick={() => onDetailsClick?.(id)}
+          onClick={handleClick}
           className="mt-4 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium py-2 rounded-lg transition-colors dark:bg-blue-500 dark:hover:bg-blue-600"
         >
           View Details

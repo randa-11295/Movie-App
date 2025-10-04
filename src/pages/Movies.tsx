@@ -5,7 +5,7 @@ import { MovieType } from "../types/moviesTypes";
 
 function Movies() {
   const { data, error, isLoading } = useQuery({
-    queryKey: ["movies", { search: "batman", page: 2 }],
+    queryKey: ["movies", { search: "princess", page: 2 }],
     queryFn: fetchMovies,
   });
 
@@ -36,7 +36,6 @@ function Movies() {
               type={movie.Type}
               poster={movie.Poster}
               id={movie.imdbID}
-              onDetailsClick={(id) => console.log("Details for:", id)}
             />
           ))}
         </div>

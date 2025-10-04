@@ -12,5 +12,4 @@ export interface MovieCardType {
   type: string;
   poster: string;
   id: string;
-  onDetailsClick?: (id: string) => void;
 }

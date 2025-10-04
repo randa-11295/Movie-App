@@ -1,6 +1,5 @@
-// api/omdb.ts
 import axios from "axios";
-import type { QueryFunctionContext } from "@tanstack/react-query";
+import { QueryFunctionContext } from "@tanstack/react-query";
 
 const API_KEY = "6db94cd0";
 const BASE_URL = "https://www.omdbapi.com/";
