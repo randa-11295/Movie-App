@@ -1,3 +1,4 @@
+import Movies from "./pages/Movies";
 function App() {
   return (
     <>
@@ -5,6 +6,7 @@ function App() {
         <h1 className="text-3xl font-bold text-blue-600">
           Hello React + TypeScript + Tailwind!
         </h1>
+        <Movies />
       </div>
     </>
   );
