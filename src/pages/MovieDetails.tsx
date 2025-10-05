@@ -7,7 +7,9 @@ import { detailsRoWs } from "../utils/consts";
 import ReusableBtn from "../components/reusable/ReusableBtn";
 import { useNavigate } from "react-router-dom";
 import noPoster from "../assets/no-poster-available.jpg";
-export default function MovieDetails() {
+import StatusMessage from "../components/common/StatusMessage";
+
+const MovieDetails = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const handleGoBack = () => {
@@ -23,26 +25,15 @@ export default function MovieDetails() {
     enabled: !!id,
   });
 
-  if (isLoading)
-    return (
-      <div className="flex justify-center items-center h-screen text-gray-400">
-        Loading movie details...
-      </div>
-    );
-
+  if (isLoading) return <StatusMessage message="Loading movie details..." />;
   if (error)
     return (
-      <div className="flex justify-center items-center h-screen text-red-500">
-        Failed to load movie details.
-      </div>
+      <StatusMessage
+        message="Failed to load movie details."
+        color="text-red-500"
+      />
     );
-
-  if (!movie)
-    return (
-      <div className="flex justify-center items-center h-screen text-gray-400">
-        No movie found.
-      </div>
-    );
+  if (!movie) return <StatusMessage message="No movie found." />;
 
   return (
     <>
@@ -59,9 +50,7 @@ export default function MovieDetails() {
           />
         </div>
 
-        {/* Details */}
         <div className="flex-1 flex flex-col gap-6">
-          {/* Title & Meta */}
           <div>
             <h1 className="text-4xl font-extrabold mb-2">{movie.Title}</h1>
             <p className="text-gray-400 text-sm">
@@ -103,4 +92,6 @@ export default function MovieDetails() {
       </div>
     </>
   );
-}
+};
+
+export default MovieDetails;

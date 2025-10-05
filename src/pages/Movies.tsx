@@ -9,6 +9,7 @@ import { SearchSchema } from "../utils/schema";
 import ReusableInput from "../components/reusable/ReusableInput";
 import ReusableBtn from "../components/reusable/ReusableBtn";
 import Logo from "../components/common/Logo";
+import StatusMessage from "../components/common/StatusMessage";
 
 function Movies() {
   const [searchValue, setSearchValue] = useState("princess");
@@ -30,14 +31,12 @@ function Movies() {
     },
   });
 
-  // 🔁 Trigger re-fetch when searchValue changes
   useEffect(() => {
     if (searchValue) refetch();
   }, [searchValue, refetch]);
 
   return (
     <>
-      {/* Header */}
       <div className="flex flex-col md:flex-row justify-between items-center mb-10 gap-6">
         <Logo />
 
@@ -55,13 +54,9 @@ function Movies() {
 
       {/* States */}
       {isLoading || isFetching ? (
-        <div className="flex items-center justify-center mt-10">
-          <p className="text-gray-400 text-lg">Loading movies...</p>
-        </div>
+        <StatusMessage message="Loading movies..." />
       ) : error ? (
-        <div className="flex items-center justify-center mt-10">
-          <p className="text-red-400 text-lg">Error loading movies.</p>
-        </div>
+        <StatusMessage message="Error loading movies." color="text-red-500" />
       ) : (
         <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {data?.Search?.length ? (

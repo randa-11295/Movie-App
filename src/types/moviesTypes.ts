@@ -66,3 +66,8 @@ export interface DetailRowType {
   label: string;
   value: string | null | undefined;
 }
+
+export interface StatusMassageProps {
+  message: string;
+  color?: string;
+}
