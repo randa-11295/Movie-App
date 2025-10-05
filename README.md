@@ -17,6 +17,20 @@ It allows users to search for movies using the **OMDb API**, view a list of resu
 This project was created as part of a **Frontend coding exercise** for Nexus Analytica.  
 It focuses on writing **clean, maintainable, and performant React code** with attention to **UI responsiveness**, **API efficiency**, and **error handling**.
 
+### 🎞️ Movies Page
+Here users can search for any movie and browse results fetched from the OMDb API.
+
+![Movies Page](./src/assets/movies-page.png)
+
+---
+
+### 📄 Movie Details Page
+Clicking a movie opens a detailed view showing its title, year, genre, and poster.
+
+![Movie Details Page](./src/assets/movie-details.png)
+
+---
+
 ### 🎯 The app demonstrates:
 - Clean component-based architecture using React + TypeScript.
 - Efficient API handling with Axios and React Query.
@@ -80,9 +94,6 @@ src
 ├── index.css
 └── main.tsx
 </pre>
-
-📸 **Folder Structure Preview:**  
-![Folder Structure](./aaaaaa.png)
 
 ---
 
