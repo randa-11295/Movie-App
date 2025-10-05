@@ -1,73 +1,109 @@
-# React + TypeScript + Vite
+# 🎥 Movie Nexus — React Movie Search App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Movie Nexus is a fully responsive web application built with **React**, **TypeScript**, and **TailwindCSS**.  
+It allows users to search for movies using the **OMDb API**, view a list of results, and explore detailed information about each movie — all with optimized performance and clean, maintainable code.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🌍 Live Demo & Repository
 
-## React Compiler
+🔗 **Deployed App:** [https://68e2e4f00f878692c92f7368--movie-nexus.netlify.app/](https://68e2e4f00f878692c92f7368--movie-nexus.netlify.app/)  
+💻 **GitHub Repository:** [https://github.com/your-username/movie-app](https://github.com/your-username/movie-app)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🧩 Project Overview
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+This project was created as part of a **Frontend coding exercise** for Nexus Analytica.  
+It focuses on writing **clean, maintainable, and performant React code** with attention to **UI responsiveness**, **API efficiency**, and **error handling**.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### 🎯 The app demonstrates:
+- Clean component-based architecture using React + TypeScript.
+- Efficient API handling with Axios and React Query.
+- Debounced search to prevent excessive API calls.
+- Responsive layout using TailwindCSS.
+- Error handling and loading states.
+- Reusable UI components for scalability.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 🎬 Features
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+- 🔍 **Movie Search:** Search any movie by title using OMDb API.  
+- 🧭 **Movie Details:** View a movie’s title, year, genre, director, and poster.  
+- 🧱 **Reusable Components:** Buttons, inputs, and message components are modular.  
+- ⚡ **Optimized Performance:** Implemented debouncing and React optimization hooks.  
+- 📱 **Responsive Design:** Works seamlessly across mobile, tablet, and desktop.  
+- 🚨 **Error & Empty States:** Gracefully handles missing data or failed requests.  
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+---
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 🗂️ Folder Structure
+
+<pre>
+src
+│
+├── api
+│   └── movie.ts
+│
+├── assets
+│   ├── logo.png
+│   ├── no-poster-available.jpg
+│   └── react.svg
+│
+├── components
+│   ├── cards
+│   │   └── MovieCard.tsx
+│   │
+│   ├── common
+│   │   ├── DetailMovieRow.tsx
+│   │   ├── Logo.tsx
+│   │   ├── Pagination.tsx
+│   │   └── StatusMessage.tsx
+│   │
+│   └── reusable
+│       ├── ReusableBtn.tsx
+│       └── ReusableInput.tsx
+│
+├── pages
+│   ├── MovieDetails.tsx
+│   └── Movies.tsx
+│
+├── types
+│   └── moviesTypes.ts
+│
+├── utils
+│   ├── consts.tsx
+│   └── schema.ts
+│
+├── App.tsx
+├── index.css
+└── main.tsx
+</pre>
+
+📸 **Folder Structure Preview:**  
+![Folder Structure](./aaaaaa.png)
+
+---
+
+## ⚙️ Tech Stack
+
+| Category | Tools / Libraries |
+|-----------|------------------|
+| Framework | React 19 |
+| Language | TypeScript |
+| Routing | React Router DOM 7 |
+| Data Fetching | React Query + Axios |
+| Forms | Formik + Yup |
+| Styling | TailwindCSS |
+| Build Tool | Vite |
+| Linting | ESLint |
+
+---
+
+## 🧠 Setup & Installation
+
+### 1️⃣ Clone the repository
+```bash
+git clone https://github.com/randa-11295/Movie-App.git
+cd movie-app
