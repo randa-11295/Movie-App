@@ -89,13 +89,11 @@ function Movies() {
           )}
         </div>
       )}
-      {!isLoading && !error && !data?.Search && (
         <Pagination
           currentPage={pageValue}
           onPageChange={handleChangePage}
           totalResults={data?.totalResults ? parseInt(data.totalResults) : 0}
         />
-      )}
     </>
   );
 }
