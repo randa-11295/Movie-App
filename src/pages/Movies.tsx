@@ -8,7 +8,7 @@ import { useState, useEffect } from "react";
 import Pagination from "../components/common/Pagination";
 import { SearchSchema } from "../utils/schema";
 import ReusableInput from "../components/reusable/ReusableInput";
-
+import ReusableBtn from "../components/reusable/ReusableBtn";
 
 function Movies() {
   const [searchValue, setSearchValue] = useState("princess");
@@ -21,8 +21,6 @@ function Movies() {
     queryKey: ["movies", { search: searchValue, page: pageValue }],
     queryFn: fetchMovies,
   });
-
-  
 
   const formik = useFormik({
     initialValues: { search: searchValue },
@@ -48,15 +46,11 @@ function Movies() {
           onSubmit={formik.handleSubmit}
           className="flex flex-col md:flex-row items-start w-full md:w-1/2 gap-2"
         >
-      <ReusableInput formik={formik} name="search" />
+          <ReusableInput formik={formik} name="search" />
 
-          <button
-            type="submit"
-            disabled={isFetching}
-            className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-all disabled:opacity-60"
-          >
-            {isFetching ? "Searching..." : "Search"}
-          </button>
+          <ReusableBtn type="submit" isLoading={isFetching || isLoading}>
+            {"Search"}
+          </ReusableBtn>
         </form>
       </div>
 
@@ -89,11 +83,11 @@ function Movies() {
           )}
         </div>
       )}
-        <Pagination
-          currentPage={pageValue}
-          onPageChange={handleChangePage}
-          totalResults={data?.totalResults ? parseInt(data.totalResults) : 0}
-        />
+      <Pagination
+        currentPage={pageValue}
+        onPageChange={handleChangePage}
+        totalResults={data?.totalResults ? parseInt(data.totalResults) : 0}
+      />
     </>
   );
 }

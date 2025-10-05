@@ -38,3 +38,12 @@ export interface ReusableInputProps<T> {
   formik: FormikProps<T>;
   name: keyof T;
 }
+
+export type ButtonProps = {
+  children: React.ReactNode;
+  isLoading?: boolean;
+  disabled?: boolean;
+  onClick?: () => void;
+  type?: "button" | "submit" | "reset";
+  className?: string;
+};

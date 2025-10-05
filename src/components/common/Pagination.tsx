@@ -26,7 +26,7 @@ const Pagination: React.FC<PaginationType> = ({
         <>
           <button
             onClick={() => onPageChange(1)}
-            className="px-3 py-1 bg-gray-700 text-gray-300 rounded-md hover:bg-gray-600"
+            className="px-3 cursor-pointer py-1 bg-gray-700 text-gray-300 rounded-md hover:bg-gray-600"
           >
             1
           </button>
@@ -39,7 +39,7 @@ const Pagination: React.FC<PaginationType> = ({
         <button
           key={num}
           onClick={() => onPageChange(num)}
-          className={`px-3 py-1 rounded-md transition-all ${
+          className={` cursor-pointer px-3 py-1 rounded-md transition-all ${
             currentPage === num
               ? "bg-blue-600 text-white"
               : "bg-gray-700 text-gray-300 hover:bg-gray-600"
@@ -57,7 +57,7 @@ const Pagination: React.FC<PaginationType> = ({
           )}
           <button
             onClick={() => onPageChange(totalPages)}
-            className="px-3 py-1 bg-gray-700 text-gray-300 rounded-md hover:bg-gray-600"
+            className="px-3 cursor-pointer py-1 bg-gray-700 text-gray-300 rounded-md hover:bg-gray-600"
           >
             {totalPages}
           </button>
