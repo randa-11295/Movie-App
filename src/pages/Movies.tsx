@@ -6,8 +6,8 @@ import logo from "../assets/logo.png";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useState, useEffect } from "react";
+import Pagination from "../components/common/Pagination";
 
-// ✅ Validation Schema (Yup)
 const SearchSchema = Yup.object({
   search: Yup.string()
     .trim()
@@ -17,14 +17,16 @@ const SearchSchema = Yup.object({
 
 function Movies() {
   const [searchValue, setSearchValue] = useState("princess");
+  const [pageValue, setPageValue] = useState(1);
 
-  // 🧠 React Query
+  const handleChangePage = (newPage: number) => {
+    setPageValue(newPage);
+  };
   const { data, error, isLoading, isFetching, refetch } = useQuery({
-    queryKey: ["movies", { search: searchValue, page: 1 }],
+    queryKey: ["movies", { search: searchValue, page: pageValue }],
     queryFn: fetchMovies,
   });
 
-  // 📝 Formik
   const formik = useFormik({
     initialValues: { search: searchValue },
     validationSchema: SearchSchema,
@@ -109,6 +111,13 @@ function Movies() {
             </p>
           )}
         </div>
+      )}
+      {!isLoading && !error && (
+        <Pagination
+          currentPage={pageValue}
+          onPageChange={handleChangePage}
+          totalResults={data?.totalResults ? parseInt(data.totalResults) : 0}
+        />
       )}
     </>
   );

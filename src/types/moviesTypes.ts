@@ -24,3 +24,11 @@ export interface  FetchMoviesResponse  {
   Response: "True" | "False";
   Error?: string;
 }
+
+export interface PaginationType {
+  totalResults: number ; 
+  currentPage: number;
+  onPageChange: (page: number) => void;
+  itemsPerPage?: number; 
+  visiblePages?: number; 
+}
