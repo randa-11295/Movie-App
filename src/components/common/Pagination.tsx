@@ -1,5 +1,5 @@
-import React from "react";
-import {PaginationType} from "../../types/moviesTypes";
+import React, { useCallback, useMemo } from "react";
+import { PaginationType } from "../../types/moviesTypes";
 
 const Pagination: React.FC<PaginationType> = ({
   totalResults,
@@ -8,25 +8,35 @@ const Pagination: React.FC<PaginationType> = ({
   itemsPerPage = 10,
   visiblePages = 5,
 }) => {
-  const totalPages = Math.ceil(totalResults / itemsPerPage);
+  const totalPages = useMemo(() => Math.ceil(totalResults / itemsPerPage), [
+    totalResults,
+    itemsPerPage,
+  ]);
+
+  const handlePageChange = useCallback(
+    (page: number) => {
+      if (page !== currentPage) onPageChange(page);
+    },
+    [currentPage, onPageChange]
+  );
+
+  const { startPage, endPage, pages } = useMemo(() => {
+    const start = Math.max(1, currentPage - Math.floor(visiblePages / 2));
+    const end = Math.min(totalPages, start + visiblePages - 1);
+    const arr = [];
+    for (let i = start; i <= end; i++) arr.push(i);
+    return { startPage: start, endPage: end, pages: arr };
+  }, [currentPage, totalPages, visiblePages]);
+
   if (totalPages <= 1) return null;
-
-  const startPage = Math.max(1, currentPage - Math.floor(visiblePages / 2));
-  const endPage = Math.min(totalPages, startPage + visiblePages - 1);
-
-  const pages = [];
-  for (let i = startPage; i <= endPage; i++) {
-    pages.push(i);
-  }
 
   return (
     <div className="flex justify-center items-center gap-2 mt-10">
-      {/* First Page */}
       {startPage > 1 && (
         <>
           <button
-            onClick={() => onPageChange(1)}
-            className="px-3 cursor-pointer py-1 bg-gray-700 text-gray-300 rounded-md hover:bg-gray-600"
+            onClick={() => handlePageChange(1)}
+            className="px-3 py-1 rounded-md bg-gray-700 text-gray-300 hover:bg-gray-600"
           >
             1
           </button>
@@ -34,12 +44,11 @@ const Pagination: React.FC<PaginationType> = ({
         </>
       )}
 
-      {/* Page Numbers */}
       {pages.map((num) => (
         <button
           key={num}
-          onClick={() => onPageChange(num)}
-          className={` cursor-pointer px-3 py-1 rounded-md transition-all ${
+          onClick={() => handlePageChange(num)}
+          className={`px-3 py-1 rounded-md transition-all ${
             currentPage === num
               ? "bg-blue-600 text-white"
               : "bg-gray-700 text-gray-300 hover:bg-gray-600"
@@ -49,15 +58,12 @@ const Pagination: React.FC<PaginationType> = ({
         </button>
       ))}
 
-      {/* Last Page */}
       {endPage < totalPages && (
         <>
-          {endPage < totalPages - 1 && (
-            <span className="text-gray-400">...</span>
-          )}
+          {endPage < totalPages - 1 && <span className="text-gray-400">...</span>}
           <button
-            onClick={() => onPageChange(totalPages)}
-            className="px-3 cursor-pointer py-1 bg-gray-700 text-gray-300 rounded-md hover:bg-gray-600"
+            onClick={() => handlePageChange(totalPages)}
+            className="px-3 py-1 rounded-md bg-gray-700 text-gray-300 hover:bg-gray-600"
           >
             {totalPages}
           </button>

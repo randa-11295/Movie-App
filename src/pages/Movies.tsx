@@ -1,11 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 import { fetchMovies } from "../api/movie";
-import MovieCard from "../components/cards/MovieCard";
 import { MovieType } from "../types/moviesTypes";
 import { useFormik } from "formik";
-import { useState, useEffect } from "react";
-import Pagination from "../components/common/Pagination";
+import { useState } from "react";
+import { useCallback } from "react";
 import { SearchSchema } from "../utils/schema";
+import MovieCard from "../components/cards/MovieCard";
+import Pagination from "../components/common/Pagination";
 import ReusableInput from "../components/reusable/ReusableInput";
 import ReusableBtn from "../components/reusable/ReusableBtn";
 import Logo from "../components/common/Logo";
@@ -15,10 +16,14 @@ function Movies() {
   const [searchValue, setSearchValue] = useState("movie");
   const [pageValue, setPageValue] = useState(1);
 
-  const handleChangePage = (newPage: number) => {
-    setPageValue(newPage);
-  };
-  const { data, error, isLoading, isFetching, refetch } = useQuery({
+  const handleChangePage = useCallback(
+    (newPage: number) => {
+      setPageValue(newPage);
+    },
+    [setPageValue]
+  );
+
+  const { data, error, isLoading, isFetching } = useQuery({
     queryKey: ["movies", { search: searchValue, page: pageValue }],
     queryFn: fetchMovies,
   });
@@ -30,10 +35,6 @@ function Movies() {
       setSearchValue(values.search.trim());
     },
   });
-
-  useEffect(() => {
-    if (searchValue) refetch();
-  }, [searchValue, refetch]);
 
   return (
     <>

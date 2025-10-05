@@ -1,4 +1,4 @@
-import React from "react";
+import React , {useCallback} from "react";
 import { MovieCardType } from "../../types/moviesTypes";
 import { useNavigate } from "react-router-dom";
 import ReusableBtn from "../reusable/ReusableBtn";
@@ -12,9 +12,10 @@ const MovieCard: React.FC<MovieCardType> = ({
 }) => {
   const navigate = useNavigate();
 
-  const handleClick = () => {
+  const handleClick = useCallback(() => {
     navigate(`/movies/${id}`);
-  };
+  }, [navigate, id]);
+    
   return (
     <div className=" bg-gray-800 rounded-2xl shadow-md overflow-hidden transition-transform hover:scale-105 hover:shadow-xl ">
       <img

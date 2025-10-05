@@ -1,20 +1,22 @@
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { fetchMovieDetails } from "../api/movie";
+import { detailsRoWs } from "../utils/consts";
+import { useNavigate } from "react-router-dom";
+import { useCallback } from "react";
 import Logo from "../components/common/Logo";
 import DetailRow from "../components/common/DetailMovieRow";
-import { detailsRoWs } from "../utils/consts";
 import ReusableBtn from "../components/reusable/ReusableBtn";
-import { useNavigate } from "react-router-dom";
 import noPoster from "../assets/no-poster-available.jpg";
 import StatusMessage from "../components/common/StatusMessage";
 
 const MovieDetails = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const handleGoBack = () => {
+  const handleGoBack = useCallback(() => {
     navigate("/");
-  };
+  },[navigate]);
+
   const {
     data: movie,
     isLoading,
@@ -39,7 +41,7 @@ const MovieDetails = () => {
     <>
       <Logo />
       <div className="mt-6 flex flex-col md:flex-row gap-10 items-start px-4 md:px-0">
-        {/* Poster */}
+
         <div className="flex-shrink-0 w-full md:w-1/3">
           <img
             src={
