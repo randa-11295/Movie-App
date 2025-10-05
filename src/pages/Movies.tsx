@@ -4,16 +4,11 @@ import MovieCard from "../components/cards/MovieCard";
 import { MovieType } from "../types/moviesTypes";
 import logo from "../assets/logo.png";
 import { useFormik } from "formik";
-import * as Yup from "yup";
 import { useState, useEffect } from "react";
 import Pagination from "../components/common/Pagination";
+import { SearchSchema } from "../utils/schema";
+import ReusableInput from "../components/reusable/ReusableInput";
 
-const SearchSchema = Yup.object({
-  search: Yup.string()
-    .trim()
-    .min(2, "Enter at least 2 characters")
-    .required("Search is required"),
-});
 
 function Movies() {
   const [searchValue, setSearchValue] = useState("princess");
@@ -26,6 +21,8 @@ function Movies() {
     queryKey: ["movies", { search: searchValue, page: pageValue }],
     queryFn: fetchMovies,
   });
+
+  
 
   const formik = useFormik({
     initialValues: { search: searchValue },
@@ -51,27 +48,7 @@ function Movies() {
           onSubmit={formik.handleSubmit}
           className="flex flex-col md:flex-row items-start w-full md:w-1/2 gap-2"
         >
-          <div className="flex flex-col w-full">
-            <input
-              id="search"
-              name="search"
-              type="text"
-              placeholder="Search movies..."
-              value={formik.values.search}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              className={`p-2 rounded-lg bg-gray-800 text-gray-200 focus:outline-none focus:ring-2 ${
-                formik.touched.search && formik.errors.search
-                  ? "focus:ring-red-500 border border-red-500"
-                  : "focus:ring-blue-500"
-              }`}
-            />
-            {formik.touched.search && formik.errors.search && (
-              <p className="text-red-400 text-sm mt-1">
-                {formik.errors.search}
-              </p>
-            )}
-          </div>
+      <ReusableInput formik={formik} name="search" />
 
           <button
             type="submit"
@@ -112,7 +89,7 @@ function Movies() {
           )}
         </div>
       )}
-      {!isLoading && !error && (
+      {!isLoading && !error && !data?.Search && (
         <Pagination
           currentPage={pageValue}
           onPageChange={handleChangePage}

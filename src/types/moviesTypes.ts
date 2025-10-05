@@ -1,9 +1,10 @@
+import { FormikProps } from "formik";
 export interface MovieType {
   Title: string;
   Year: string;
   Type: string;
   Poster: string;
-  imdbID : string;
+  imdbID: string;
 }
 
 export interface MovieCardType {
@@ -18,7 +19,7 @@ export interface FetchMoviesParamsType {
   page: number;
 }
 
-export interface  FetchMoviesResponse  {
+export interface FetchMoviesResponse {
   Search?: MovieType[];
   totalResults?: string;
   Response: "True" | "False";
@@ -26,9 +27,14 @@ export interface  FetchMoviesResponse  {
 }
 
 export interface PaginationType {
-  totalResults: number ; 
+  totalResults: number;
   currentPage: number;
   onPageChange: (page: number) => void;
-  itemsPerPage?: number; 
-  visiblePages?: number; 
+  itemsPerPage?: number;
+  visiblePages?: number;
+}
+
+export interface ReusableInputProps<T> {
+  formik: FormikProps<T>;
+  name: keyof T;
 }
