@@ -47,3 +47,22 @@ export type ButtonProps = {
   type?: "button" | "submit" | "reset";
   className?: string;
 };
+
+export type DetailMovieRowProps = {
+  label: string;
+  value: React.ReactNode;
+};
+
+export interface MovieDetailsType {
+  Director: string;
+  Writer: string;
+  Actors: string;
+  Language: string;
+  Country: string;
+  imdbRating?: string;
+}
+
+export interface DetailRowType {
+  label: string;
+  value: string | null | undefined;
+}

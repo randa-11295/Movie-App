@@ -1,7 +1,9 @@
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { fetchMovieDetails } from "../api/movie";
-
+import Logo from "../components/common/Logo";
+import DetailRow from "../components/common/DetailMovieRow";
+import { detailsRoWs } from "../utils/consts";
 export default function MovieDetails() {
   const { id } = useParams<{ id: string }>();
 
@@ -37,7 +39,9 @@ export default function MovieDetails() {
     );
 
   return (
-      <div className=" flex flex-col md:flex-row gap-10 items-start">
+    <>
+      <Logo />
+      <div className=" mt-6 flex flex-col md:flex-row gap-10 items-start">
         <div className="flex-shrink-0 w-full md:w-1/3">
           <img
             src={
@@ -50,7 +54,6 @@ export default function MovieDetails() {
           />
         </div>
 
-        {/* Movie Details */}
         <div className="flex-1 space-y-6">
           <div>
             <h1 className="text-4xl font-extrabold mb-1">{movie.Title}</h1>
@@ -62,41 +65,16 @@ export default function MovieDetails() {
           <p className="text-lg text-gray-200 leading-relaxed">{movie.Plot}</p>
 
           <div className="grid gap-y-2 text-sm sm:text-base text-gray-300">
-            {movie.Director && movie.Director !== "N/A" && (
-              <p>
-                <span className="font-semibold text-gray-400">Director:</span>{" "}
-                {movie.Director}
-              </p>
-            )}
-            {movie.Writer && movie.Writer !== "N/A" && (
-              <p>
-                <span className="font-semibold text-gray-400">Writer:</span>{" "}
-                {movie.Writer}
-              </p>
-            )}
-            {movie.Actors && movie.Actors !== "N/A" && (
-              <p>
-                <span className="font-semibold text-gray-400">Actors:</span>{" "}
-                {movie.Actors}
-              </p>
-            )}
-            {movie.Language && (
-              <p>
-                <span className="font-semibold text-gray-400">Language:</span>{" "}
-                {movie.Language}
-              </p>
-            )}
-            {movie.Country && (
-              <p>
-                <span className="font-semibold text-gray-400">Country:</span>{" "}
-                {movie.Country}
-              </p>
-            )}
-            {movie.imdbRating && (
-              <p>
-                <span className="font-semibold text-gray-400">IMDb:</span>{" "}
-                ⭐ {movie.imdbRating}/10
-              </p>
+            {detailsRoWs(movie).map(
+              (item) =>
+                item.value &&
+                item.value !== "N/A" && (
+                  <DetailRow
+                    key={item.label}
+                    label={item.label}
+                    value={item.value}
+                  />
+                )
             )}
           </div>
 
@@ -112,5 +90,6 @@ export default function MovieDetails() {
           )}
         </div>
       </div>
+    </>
   );
 }

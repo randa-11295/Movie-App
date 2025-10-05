@@ -2,13 +2,13 @@ import { useQuery } from "@tanstack/react-query";
 import { fetchMovies } from "../api/movie";
 import MovieCard from "../components/cards/MovieCard";
 import { MovieType } from "../types/moviesTypes";
-import logo from "../assets/logo.png";
 import { useFormik } from "formik";
 import { useState, useEffect } from "react";
 import Pagination from "../components/common/Pagination";
 import { SearchSchema } from "../utils/schema";
 import ReusableInput from "../components/reusable/ReusableInput";
 import ReusableBtn from "../components/reusable/ReusableBtn";
+import Logo from "../components/common/Logo";
 
 function Movies() {
   const [searchValue, setSearchValue] = useState("princess");
@@ -39,9 +39,8 @@ function Movies() {
     <>
       {/* Header */}
       <div className="flex flex-col md:flex-row justify-between items-center mb-10 gap-6">
-        <img src={logo} alt="Logo" className="h-16 w-auto" />
+        <Logo />
 
-        {/* Search Form */}
         <form
           onSubmit={formik.handleSubmit}
           className="flex flex-col md:flex-row items-start w-full md:w-1/2 gap-2"
@@ -49,7 +48,7 @@ function Movies() {
           <ReusableInput formik={formik} name="search" />
 
           <ReusableBtn type="submit" isLoading={isFetching || isLoading}>
-            {"Search"}
+            Search
           </ReusableBtn>
         </form>
       </div>
