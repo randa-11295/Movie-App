@@ -12,7 +12,7 @@ import Logo from "../components/common/Logo";
 import StatusMessage from "../components/common/StatusMessage";
 
 function Movies() {
-  const [searchValue, setSearchValue] = useState("princess");
+  const [searchValue, setSearchValue] = useState("movie");
   const [pageValue, setPageValue] = useState(1);
 
   const handleChangePage = (newPage: number) => {
