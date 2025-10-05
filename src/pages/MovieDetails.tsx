@@ -6,6 +6,7 @@ import DetailRow from "../components/common/DetailMovieRow";
 import { detailsRoWs } from "../utils/consts";
 import ReusableBtn from "../components/reusable/ReusableBtn";
 import { useNavigate } from "react-router-dom";
+import noPoster from "../assets/no-poster-available.jpg";
 export default function MovieDetails() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
@@ -51,9 +52,7 @@ export default function MovieDetails() {
         <div className="flex-shrink-0 w-full md:w-1/3">
           <img
             src={
-              movie.Poster && movie.Poster !== "N/A"
-                ? movie.Poster
-                : "/no-poster.png"
+              movie.Poster && movie.Poster !== "N/A" ? movie.Poster : noPoster
             }
             alt={movie.Title}
             className="w-full h-auto rounded-2xl shadow-xl border border-gray-800"
