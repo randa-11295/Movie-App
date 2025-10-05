@@ -7,8 +7,8 @@ It allows users to search for movies using the **OMDb API**, view a list of resu
 
 ## 🌍 Live Demo & Repository
 
-🔗 **Deployed App:** [https://68e2e4f00f878692c92f7368--movie-nexus.netlify.app/](https://68e2e4f00f878692c92f7368--movie-nexus.netlify.app/)  
-💻 **GitHub Repository:** [https://github.com/your-username/movie-app](https://github.com/your-username/movie-app)
+🔗 **Deployed App:** [https://movie-nexus.netlify.app/](https://movie-nexus.netlify.app/)  
+💻 **GitHub Repository:** [https://github.com/randa-11295/Movie-App](https://github.com/randa-11295/Movie-App)
 
 ---
 
