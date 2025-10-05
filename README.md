@@ -20,7 +20,7 @@ It focuses on writing **clean, maintainable, and performant React code** with at
 ### 🎞️ Movies Page
 Here users can search for any movie and browse results fetched from the OMDb API.
 
-![Movies Page](./src/assets/movies-page.png)
+![Movies Page](./src/assets/movies.png)
 
 ---
 
