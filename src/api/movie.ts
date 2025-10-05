@@ -23,3 +23,17 @@ export const fetchMovies = async (
 
   return response.data;
 };
+
+export const fetchMovieDetails = async (id: string) => {
+
+  if (!id) throw new Error("Movie ID is required");
+
+  const response = await axios.get(apiUrl, {
+    params: {
+      i: id,        
+      apikey: apiKey,
+    },
+  });
+
+  return response.data;
+};
